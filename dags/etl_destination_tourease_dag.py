@@ -76,7 +76,7 @@ def extract_data(**kwargs):
             # Replace NaT with None
             df = df.where(pd.notnull(df), None)
             
-            dataframes[table] = df
+            dataframes[table] = df.to_dict(orient='records')
     
     # Push the dataframes to XComs for the next task to use
     kwargs['ti'].xcom_push(key='dataframes', value=dataframes)
@@ -85,7 +85,7 @@ def transform_data(**kwargs):
     # Pull the raw data from XComs
     ti = kwargs['ti']
     raw_data = ti.xcom_pull(key='dataframes', task_ids='extract_data')
-    dataframes = raw_data
+    dataframes = {table: pd.DataFrame(data) for table, data in raw_data.items()}
 
     # Perform transformations
     df_destinations = dataframes['destinations']
@@ -139,13 +139,13 @@ def transform_data(**kwargs):
 
     # Push the transformed dataframes to XComs for the next task to use
     transformed_data = {
-        'dim_facilities': df_dim_facilities,
-        'dim_address': df_dim_address,
-        'dim_destinations': df_dim_destinations,
-        'dim_categories': df_dim_categories,
-        'dim_medias': df_dim_medias,
-        'destination_fact': df_destination_fact,
-        'admins': df_admins
+        'dim_facilities': df_dim_facilities.to_dict(orient='records'),
+        'dim_address': df_dim_address.to_dict(orient='records'),
+        'dim_destinations': df_dim_destinations.to_dict(orient='records'),
+        'dim_categories': df_dim_categories.to_dict(orient='records'),
+        'dim_medias': df_dim_medias.to_dict(orient='records'),
+        'destination_fact': df_destination_fact.to_dict(orient='records'),
+        'admins': df_admins.to_dict(orient='records')
     }
     ti.xcom_push(key='transformed_data', value=transformed_data)
 
@@ -167,7 +167,8 @@ def load_to_bigquery(**kwargs):
         to_gbq(df, table_id, project_id=project_id, if_exists='replace', credentials=credentials)
 
     # Iterate over DataFrame dictionary and load each to BigQuery
-    for table_name, df in transformed_data.items():
+    for table_name, data in transformed_data.items():
+        df = pd.DataFrame(data)
         load_to_bq(df, table_name)
 
     print("All dataframes loaded to BigQuery successfully.")
