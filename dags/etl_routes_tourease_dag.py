@@ -103,6 +103,7 @@ def transform_data(**kwargs):
     routes_fact = routes_fact.rename(columns={"id_routes": "route_id", "id_route_details": "route_details_id", "id_destinations": "destinations_id"})
     routes_fact['user_count'] = 1
     routes_fact['route_count'] = 1
+    routes_fact['destination_count'] = 1
     
     transformed_data = {
         'dim_destinations': dim_destinations.to_dict(orient='records'),
