@@ -81,9 +81,15 @@ def transform_data(**kwargs):
     routes_df = pd.DataFrame(extracted_data['routes'])
     route_details_df = pd.DataFrame(extracted_data['route_details'])
     users_df = pd.DataFrame(extracted_data['users'])
-    
+
+    month_mapping = {
+    1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr',
+    5: 'Mei', 6: 'Jun', 7: 'Jul', 8: 'Agu',
+    9: 'Sep', 10: 'Okt', 11: 'Nov', 12: 'Des'
+    }
+
     users_df['tahun'] = pd.to_datetime(users_df['created_at']).dt.year
-    users_df['bulan'] = pd.to_datetime(users_df['created_at']).dt.month
+    users_df['bulan'] = pd.to_datetime(users_df['created_at']).dt.month.map(month_mapping)
     users_df['tanggal'] = pd.to_datetime(users_df['created_at']).dt.day
     users_df['tanggallengkap'] = pd.to_datetime(users_df['created_at']).dt.strftime('%Y-%m-%d')
     
