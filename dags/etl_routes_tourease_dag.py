@@ -93,17 +93,10 @@ def transform_data(**kwargs):
     users_df['tanggal'] = pd.to_datetime(users_df['created_at']).dt.day
     users_df['tanggallengkap'] = pd.to_datetime(users_df['created_at'])  # Convert to datetime object
     
-    # Tentukan batasan untuk pengguna baru (misalnya, 3 hari terakhir)
-    now = datetime.now()
-    new_user_threshold = now - timedelta(days=3)
-
-    # Tambahkan kolom 'is_new_user' ke users_df
-    users_df['is_new_user'] = users_df['tanggallengkap'] > new_user_threshold
-    
     dim_destinations = destinations_df[['id', 'name', 'description', 'open_time', 'close_time', 'entry_price', 'longitude', 'latitude', 'visit_count']]
     dim_routes = routes_df[['id', 'name', 'start_longitude', 'start_latitude', 'price']]
     dim_route_details = route_details_df[['id', 'longitude', 'latitude', 'duration', 'order', 'visit_start', 'visit_end']]
-    dim_users = users_df[['id', 'email', 'username', 'fullname', 'phone_number', 'gender', 'city', 'province', 'tahun', 'bulan', 'tanggal', 'tanggallengkap', 'is_new_user']]
+    dim_users = users_df[['id', 'email', 'username', 'fullname', 'phone_number', 'gender', 'city', 'province', 'tahun', 'bulan', 'tanggal', 'tanggallengkap']]
     
     dim_route_details['visit_start'] = dim_route_details['visit_start'].astype(str)
     dim_route_details['visit_end'] = dim_route_details['visit_end'].astype(str)
