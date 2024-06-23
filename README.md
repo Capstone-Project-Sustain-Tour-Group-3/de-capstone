@@ -1,7 +1,7 @@
 # Tourease - Data Engineer
 
 ## About Project
-Project ini memiliki tujuan untuk melakukan **scrapping data** destinasi wisata (alam, sejarah, dan seni budaya) di seluruh provinsi Indonesia. Setelah data terkumpul kemudian akan diserahkan ke tim terkait yaitu (Backend). Selain itu project ini bertujuan untuk membuat sebuah **data warehouse** untuk memudahkan proses optimasi kueri secara cepat dan efisien melalui proses **ETL (Extract, Transform, Load)**. Dengan melakukan proses pengekstrakan data dari database mysql di AWS Redshift yang kemudian dijadikan sebuah tabel-tabel multi star schema. Data dalam tabel tersebut dilakukan proses Cleaning dan Tranformasi. Kemudian hasilnya akan diupload ke data warehouse (Big Query). Setelah itu dilakukan proses **Visualisasi Data** dari data tersebut menggunakan Looker Studio untuk mendapatkan insight total pengguna, total rute, total admin, total konten video, total destinasi, total destinasi berdasarkan kategori, data rute pengguna, total pengguna dan pengguna baru setiap bulannya.
+Project ini memiliki tujuan untuk melakukan **scraping data** destinasi wisata (alam, sejarah, dan seni budaya) di seluruh provinsi Indonesia. Setelah data terkumpul kemudian akan diserahkan ke tim terkait yaitu (Backend). Selain itu project ini bertujuan untuk membuat sebuah **data warehouse** untuk memudahkan proses optimasi kueri secara cepat dan efisien melalui proses **ETL (Extract, Transform, Load)**. Dengan melakukan proses pengekstrakan data dari database mysql di AWS Redshift yang kemudian dijadikan sebuah tabel-tabel multi star schema. Data dalam tabel tersebut dilakukan proses Cleaning dan Tranformasi. Kemudian hasilnya akan diupload ke data warehouse (Big Query). Setelah itu dilakukan proses **Visualisasi Data** dari data tersebut menggunakan Looker Studio untuk mendapatkan insight total pengguna, total rute, total admin, total konten video, total destinasi, total destinasi berdasarkan kategori, data rute pengguna, total pengguna dan pengguna baru setiap bulannya.
 
 ## Tech Stacks
 Daftar tools dan framework yang digunakan dalam project ini:
@@ -32,22 +32,22 @@ DE_CAPSTONE/
 ├── dags/
 │   ├── etl_destination_tourease_dag.py    # DAG untuk proses ETL destinasi
 │   └── etl_routes_tourease_dag.py         # DAG untuk proses ETL rute
-├── data_final_destination/                # Folder untuk data hasil merged data scrapping
-├── data_scrapping/                        # Folder untuk data hasil scrapping
+├── data_final_destination/                # Folder untuk data hasil merged data scraping
+├── data_scrapping/                        # Folder untuk data hasil scraping
 ├── .env                                   # File konfigurasi environment
 ├── .env-example                           # Contoh file konfigurasi environment
 ├── .gitignore                             # File untuk mengecualikan file tertentu dari Git
 ├── accountKey.json                        # File kunci akun untuk akses Google Cloud
 ├── etl_pipeline_destinations.ipynb        # Notebook Jupyter untuk pipeline ETL destinasi
 ├── etl_pipeline_routes.ipynb              # Notebook Jupyter untuk pipeline ETL rute
-├── merged_data_scrapping.ipynb            # Notebook Jupyter untuk proses penggabungan data scrapping
+├── merged_data_scrapping.ipynb            # Notebook Jupyter untuk proses penggabungan data scraping
 ├── README.md                              # Dokumentasi proyek
-├── SustainTour-Data-Scraping-Flow.png     # Diagram arsitektur scrapping data
+├── SustainTour-Data-Scraping-Flow.png     # Diagram arsitektur scraping data
 └── SustainTour-ETL-Architecture.png       # Diagram arsitektur ETL
 ```
 
-## Architecture Scrapping Data (HLA)
- ![Scrapping Data Diagram](https://github.com/Capstone-Project-Sustain-Tour-Group-3/de-capstone/blob/main/SustainTour-Data-Scraping-Flow.png?raw=true)
+## Architecture Scraping Data (HLA)
+ ![Scraping Data Diagram](https://github.com/Capstone-Project-Sustain-Tour-Group-3/de-capstone/blob/main/SustainTour-Data-Scraping-Flow.png?raw=true)
 
  ## Architecture ETL (HLA)
  ![ETL Diagram](https://github.com/Capstone-Project-Sustain-Tour-Group-3/de-capstone/blob/main/SustainTour-ETL-Architecture.png?raw=true)
