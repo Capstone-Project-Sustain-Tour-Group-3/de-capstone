@@ -22,7 +22,7 @@ Daftar tools dan framework yang digunakan dalam project ini:
 - Tiktok
 - Youtube
 - Reels Instagram
-- other
+- others
 
 ## Project Structure
 Berikut adalah struktur direktori dan deskripsi singkat dari masing-masing file dan folder dalam proyek ini:
